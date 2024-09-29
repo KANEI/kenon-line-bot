@@ -1,0 +1,6 @@
+gspread==6.1.2
+gspread-formatting==1.2.0
+line-bot-sdk==3.13.0
+gunicorn==23.0.0
+flask
+pandas==2.2.2

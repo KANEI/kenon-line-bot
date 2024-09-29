@@ -1,0 +1,4 @@
+__pycache__
+.env
+linebot.json
+config.py
