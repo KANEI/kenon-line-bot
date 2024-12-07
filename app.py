@@ -1,4 +1,4 @@
-import config 
+import os
 import gspread
 import random
 import datetime
@@ -19,20 +19,17 @@ from linebot.models import (
 #Googleスプレッドシートの情報を得る.
 
 # 認証してGoogleスプレッドシートにアクセス
-gc = gspread.service_account(
-    filename="linebot.json"
-)
+gc = gspread.service_account(filename="config/linebot.json")
 # スプレッドシートを開く (スプレッドシートのURLの最後にあるIDを使用)
-
-sh = gc.open_by_key(config.SPREADSHEET_URL)
+sh = gc.open_by_key(os.getenv('SPREADSHEET_URL'))
 
 #これでsh.sheet1.get_all_values()でシート1の全ての値を取り出せるようになった。
 
 #LINEbotを操作する.
 app = Flask(__name__)
 
-line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(config.LINE_CHANNEL_SECRET)    
+line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN'))
+handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET')) 
 
 
 @app.route("/callback", methods=['POST'])
